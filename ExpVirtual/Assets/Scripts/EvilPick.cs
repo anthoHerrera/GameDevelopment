@@ -15,7 +15,7 @@ public class EvilPick : MonoBehaviour
         this.gameObject.SetActive(false);
         int x = 0;
         int.TryParse(puntaje.text, out x);
-        x -= 50;
+        x -= 70;
         puntaje.text = x.ToString();
     }
 }

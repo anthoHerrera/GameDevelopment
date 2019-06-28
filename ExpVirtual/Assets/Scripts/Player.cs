@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     public Rigidbody2D body;
     public Animator anim;
 
+    public float fallMultiplier = 2.5f;
+    public float lowJumpMultiplier = 2f;
     public float walkingSpeed;
     public float jumpSpeed;
 
@@ -38,6 +40,10 @@ public class Player : MonoBehaviour
         if (body.velocity.y < 0.01)
         {
             anim.SetBool("isJump", false);
+            body.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+        }else if(body.velocity.y > 0.01 && !Input.GetKeyDown(KeyCode.Space))
+        {
+            body.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
 
         { // x-axis movement
